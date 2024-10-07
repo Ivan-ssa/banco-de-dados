@@ -1,0 +1,17 @@
+create or replace function ListaProduto (codigo_produto integer) 
+returns text as $$
+declare
+	resultado text;	
+begin
+	 SELECT 
+        cod_prod::text || '; ' || nome || '; ' || preco::text
+    INTO resultado
+    FROM produto
+    WHERE cod_prod = codigo_produto;
+
+    
+    RETURN resultado;
+end;
+$$ language plpgsql;
+
+select ListaProduto(1)
